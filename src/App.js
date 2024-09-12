@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import MovieList from './MovieList';
-import Filter from './Filter';
+import Filter from './components/Filter'
+import MovieList from './components/MovieList';
 
 class App extends Component {
   constructor(props) {
