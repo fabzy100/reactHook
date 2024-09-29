@@ -1,13 +1,43 @@
-import React from 'react';
+import styled from "styled-components";
 
-const MovieCard = ({ title, description, posterURL, rating }) => {
+const CardContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+`;
+
+const PostalUrl = styled.img`
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  margin-bottom: 10px;
+`;
+
+const Title = styled.h3`
+  margin-bottom: 10px;
+`;
+
+const Description = styled.p`
+  margin-bottom: 10px;
+`;
+
+const MovieCard = ({ movie }) => {
+
+  if (!movie) {
+    return <div>Movie not found</div>; // Error handling for when movie is not defined
+  }
+
   return (
-    <div className="movie-card" style={{ border: '1px solid #ddd', padding: '10px', margin: '10px' }}>
-      <img src={posterURL} alt={title} style={{ width: '150px' }} />
-      <h3>{title}</h3>
-      <p>{description}</p>
-      <p><strong>Rating:</strong> {rating}</p>
-    </div>
+    <CardContainer>
+      <PostalUrl src={movie.posterURL} alt={movie.title} />
+      <Title>{movie.title}</Title>
+      <Description>{movie.description}</Description>
+      <div>{movie.rating}</div>
+    </CardContainer>
   );
 };
 

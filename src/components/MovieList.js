@@ -1,20 +1,25 @@
-import React from 'react';
+import styled from 'styled-components';
+import { useContext } from 'react'; 
 import MovieCard from './MovieCard';
+import { MovieContext } from './MovieContext'; 
 
-const MovieList = ({ movies }) => {
+const Wrapper = styled.div`
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+`;
+
+const MovieList = () => {
+  const { movies } = useContext(MovieContext);
+
   return (
-    <div className="movie-list">
-      {movies.map((movie, index) => (
-        <MovieCard
-          key={index}
-          title={movie.title}
-          description={movie.description}
-          posterURL={movie.posterURL}
-          rating={movie.rating}
-        />
+    <Wrapper>
+      {movies.map((movie) => (
+        <MovieCard key={movie.id} movie={movie} />
       ))}
-    </div>
-  );
-};
+    </Wrapper>
+  )
+}
 
 export default MovieList;
